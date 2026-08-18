@@ -12,7 +12,7 @@ The application implements a multi-agent prompt chaining architecture:
 ## Technical Stack & Model Selection
 * Frontend: Streamlit (Interactive, user-friendly sidebar for dynamic inputs).
 * Orchestration: LangChain (ChatPromptTemplate, StrOutputParser).
-* LLM Engine: Groq API running llama-3.3-70b-versatile.
+* LLM Engine: Groq API running openai/gpt-oss-120b.
 * Justification: Selected for its lightning-fast token generation speed, high-tier reasoning capabilities comparable to proprietary frontier models, and cost efficiency for real-time multi-agent workflows.
 
 ## Installation & Local Execution
