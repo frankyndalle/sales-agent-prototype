@@ -5,7 +5,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
 # Hardcoded API key for seamless execution of your CAP 931 project
-api_key = "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"
+api_key = "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"
 
 # Streamlit Page Configuration
 st.set_page_config(
@@ -67,9 +67,9 @@ synthesis_prompt = ChatPromptTemplate.from_messages([
 if run_button:
     with st.spinner("Running multi-agent workflow... Please wait."):
         try:
-            # Initialize Groq LLM with supported Llama model
+            # Initialize Groq LLM with active production model
             model = ChatGroq(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
                 temperature=0.1,
                 api_key=api_key
             )
