@@ -157,4 +157,3 @@ if run_button:
                 st.error(f"An error occurred during agent execution: {e}")
 else:
     st.info("👈 Enter your product and target account details in the sidebar and click **Generate Account Insights One-Pager** to start.")
-'@ | Out-File -Encoding utf8 main.py
