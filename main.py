@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 st.title("🤖 Multi-Agent Sales Assistant Prototype")
-st.markdown("CAP 931 Capstone — Powered by LangChain, Groq (`llama-3.3-70b-versatile`), BeautifulSoup Web Scraping, & Streamlit")
+st.markdown("CAP 931 Capstone — Powered by LangChain, Groq (`llama-3.1-70b-versatile`), BeautifulSoup Web Scraping, & Streamlit")
 
 # Sidebar Inputs for Sales Representative
 st.sidebar.header("Prospect & Product Details")
@@ -97,15 +97,14 @@ if run_button:
                 comp_list = [c.strip() for c in competitors.split(",")]
                 comp_evidence_dict = {}
                 for comp in comp_list:
-                    # Construct basic URL or scrape if URL provided
                     c_url = comp if comp.startswith("http") else f"https://www.{comp.lower().replace(' ', '')}.com"
                     comp_evidence_dict[comp] = fetch_web_content(c_url)
 
                 comp_evidence_str = "\n".join([f"- {comp}: {text}" for comp, text in comp_evidence_dict.items()])
 
-                # Initialize Groq LLM with standardized model: llama-3.3-70b-versatile
+                # Initialize Groq LLM with supported production model: llama-3.1-70b-versatile
                 model = ChatGroq(
-                    model="llama-3.3-70b-versatile",
+                    model="llama-3.1-70b-versatile",
                     temperature=0.1,
                     api_key=api_key
                 )
