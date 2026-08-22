@@ -1,4 +1,3 @@
-@'
 # CAP 931: Capstone - Multi-Agent Sales Assistant Prototype
 
 ## Overview
