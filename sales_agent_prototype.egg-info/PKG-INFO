@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: sales-agent-prototype
+Version: 0.1.0
+Summary: CAP 931 - Multi-Agent Sales Assistant Prototype with Source-Grounded Web Scraping
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: streamlit>=1.30.0
+Requires-Dist: langchain>=0.1.0
+Requires-Dist: langchain-groq>=0.1.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: beautifulsoup4>=4.12.0
+Requires-Dist: python-dotenv>=1.0.0
+
+# CAP 931: Capstone - Multi-Agent Sales Assistant Prototype
+
+## Overview
+The Multi-Agent Sales Assistant Prototype is an enterprise sales intelligence tool designed to ingest prospect account inputs, perform live web scraping on target company and competitor domains for source grounding, and synthesize executive-ready sales strategies. Powered by Streamlit, LangChain, BeautifulSoup, and Groq (`llama-3.3-70b-versatile`), the application chains three autonomous specialized agents to deliver structured insights.
+
+## Architecture & Multi-Agent Workflow
+1. **Sales Intake Agent**: Analyzes the prospect request, product category, target persona, and goals.
+2. **Research & Competitor Intelligence Agent**: Automatically fetches and parses live public web data from company and competitor URLs, extracting verified evidence and noting unverified claims.
+3. **Strategy Synthesis Agent**: Merges intake analysis and source-grounded research into a polished executive one-pager complete with verification links.
+
+## Technical Stack & Model Selection
+* **Frontend**: Streamlit.
+* **Orchestration**: LangChain.
+* **Web Scraper**: `requests` and `BeautifulSoup` for live public data ingestion.
+* **LLM Engine**: Groq running `llama-3.3-70b-versatile`.
+* **Security**: API keys managed securely via local `.env` environment variables (`GROQ_API_KEY`).
+
+## Installation & Local Execution (`uv` Workflow)
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/frankyndalle/sales-agent-prototype.git](https://github.com/frankyndalle/sales-agent-prototype.git)
+   cd sales-agent-prototype

@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 st.title("🤖 Multi-Agent Sales Assistant Prototype")
-st.markdown("CAP 931 Capstone — Powered by LangChain, Groq (`llama-3.1-70b-versatile`), BeautifulSoup Web Scraping, & Streamlit")
+st.markdown("CAP 931 Capstone — Powered by LangChain, Groq (`openai/gpt-oss-120b`), BeautifulSoup Web Scraping, & Streamlit")
 
 # Sidebar Inputs for Sales Representative
 st.sidebar.header("Prospect & Product Details")
@@ -68,7 +68,7 @@ research_prompt = ChatPromptTemplate.from_messages([
     ),
     (
         "human",
-        "Target Company URL: {company_url}\nScraped Company Evidence:\n{company_text}\n\nCompetitors: {competitors}\nCompetitor Evidence:\n{comp_evidence}\n\nProduct: {product_name} - {value_proposition}\n\nProvide insights on:\n1. Company Strategy (from sources)\n2. Key Leadership / Focus Areas\n3. Competitor Overlaps\n4. Recommended Sales Positioning"
+        "Target Company URL: {company_url}\nScraped Company Evidence:\n{company_text}\n\nCompetitors: {competitors}\nCompetitor Evidence:\n{comp_evidence}\n\nProduct: {product_name} - {value_proposition}\n\nProvide insights on:\n1. Company Strategy (strictly from sources)\n2. Key Leadership / Focus Areas\n3. Competitor Overlaps\n4. Recommended Sales Positioning"
     )
 ])
 
@@ -79,7 +79,7 @@ synthesis_prompt = ChatPromptTemplate.from_messages([
     ),
     (
         "human",
-        "Based on the intake analysis and source-grounded research, compile a polished summary:\n\nINTAKE:\n{sales_analysis}\n\nRESEARCH:\n{research_analysis}\n\nTarget Company URL: {company_url}\n\nFormat cleanly with headers: Executive Summary, Competitor Analysis, Key Leadership, Source Verification, and Tailored Pitch Strategy."
+        "Based on the intake analysis and source-grounded research, compile a polished summary:\n\nINTAKE:\n{sales_analysis}\n\nRESEARCH:\n{research_analysis}\n\nTarget Company URL: {company_url}\n\nFormat cleanly with headers: Executive Summary, Competitor Analysis, Key Leadership, Source Verification (including {company_url}), and Tailored Pitch Strategy."
     )
 ])
 
@@ -93,7 +93,7 @@ if run_button:
                 # 1. Scrape live data from target company URL
                 scraped_company_text = fetch_web_content(company_url)
 
-                # 2. Scrape competitor URLs or simulate domain lookups for competitor names
+                # 2. Scrape competitor URLs or simulate domain lookups
                 comp_list = [c.strip() for c in competitors.split(",")]
                 comp_evidence_dict = {}
                 for comp in comp_list:
@@ -102,9 +102,9 @@ if run_button:
 
                 comp_evidence_str = "\n".join([f"- {comp}: {text}" for comp, text in comp_evidence_dict.items()])
 
-                # Initialize Groq LLM with supported production model: llama-3.1-70b-versatile
+                # Initialize Groq LLM with openai/gpt-oss-120b
                 model = ChatGroq(
-                    model="llama-3.1-70b-versatile",
+                    model="openai/gpt-oss-120b",
                     temperature=0.1,
                     api_key=api_key
                 )
